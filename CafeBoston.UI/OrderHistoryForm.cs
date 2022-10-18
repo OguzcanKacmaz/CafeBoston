@@ -10,13 +10,16 @@ using System.Windows.Forms;
 
 namespace CafeBoston.UI
 {
-    public partial class MainForm : Form
+    public partial class OrderHistoryForm : Form
     {
-        public MainForm()
+        public OrderHistoryForm()
         {
             InitializeComponent();
         }
 
-        
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
     }
 }

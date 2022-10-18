@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CafeBoston.UI
 {
-    public partial class MainForm : Form
+    public partial class OrderForm : Form
     {
-        public MainForm()
+        public OrderForm()
         {
             InitializeComponent();
         }
