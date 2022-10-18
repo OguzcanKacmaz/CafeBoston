@@ -13,7 +13,7 @@ namespace CafeBoston.DATA
 
         public override string ToString()
         {
-            return base.ToString();
+            return $"{ProductName}({UnitPrice:c2})";
         }
     }
 }
