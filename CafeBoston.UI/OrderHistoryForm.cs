@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CafeBoston.DATA;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,30 @@ namespace CafeBoston.UI
 {
     public partial class OrderHistoryForm : Form
     {
-        public OrderHistoryForm()
+        private readonly CafeData _db;
+        public OrderHistoryForm(CafeData db)
         {
+            _db=db;
             InitializeComponent();
+            dgwOrders.DataSource = db.PastOrders;
         }
 
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
 
+        }
+
+        private void dgwOrders_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgwOrders.SelectedRows.Count==1)
+            {
+                Order order = (Order)dgwOrders.SelectedRows[0].DataBoundItem;
+                dgwOrderDetails.DataSource = order.OrderDetails;
+            }
+            else
+            {
+                dgwOrderDetails.DataSource = null;
+            }
         }
     }
 }

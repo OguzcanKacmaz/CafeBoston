@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.msTop = new System.Windows.Forms.MenuStrip();
             this.tsmiProducts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOrderHistory = new System.Windows.Forms.ToolStripMenuItem();
             this.lvwTables = new System.Windows.Forms.ListView();
+            this.ımlTables = new System.Windows.Forms.ImageList(this.components);
             this.msTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +63,7 @@
             this.tsmiOrderHistory.Name = "tsmiOrderHistory";
             this.tsmiOrderHistory.Size = new System.Drawing.Size(154, 26);
             this.tsmiOrderHistory.Text = "Order History";
+            this.tsmiOrderHistory.Click += new System.EventHandler(this.tsmiOrderHistory_Click);
             // 
             // lvwTables
             // 
@@ -67,11 +71,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvwTables.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lvwTables.LargeImageList = this.ımlTables;
             this.lvwTables.Location = new System.Drawing.Point(0, 34);
             this.lvwTables.Name = "lvwTables";
             this.lvwTables.Size = new System.Drawing.Size(1035, 720);
             this.lvwTables.TabIndex = 1;
             this.lvwTables.UseCompatibleStateImageBehavior = false;
+            this.lvwTables.DoubleClick += new System.EventHandler(this.lvwTables_DoubleClick);
+            // 
+            // ımlTables
+            // 
+            this.ımlTables.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.ımlTables.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ımlTables.ImageStream")));
+            this.ımlTables.TransparentColor = System.Drawing.Color.Transparent;
+            this.ımlTables.Images.SetKeyName(0, "empty");
+            this.ımlTables.Images.SetKeyName(1, "full");
             // 
             // MainForm
             // 
@@ -99,5 +113,6 @@
         private ToolStripMenuItem tsmiProducts;
         private ToolStripMenuItem tsmiOrderHistory;
         private ListView lvwTables;
+        private ImageList ımlTables;
     }
 }
