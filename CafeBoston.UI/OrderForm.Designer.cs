@@ -299,6 +299,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1221, 802);
+            this.ControlBox = false;
             this.Controls.Add(this.btnPay);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnCancel);

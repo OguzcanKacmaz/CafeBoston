@@ -58,7 +58,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgwOrderDetails);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Size = new System.Drawing.Size(1258, 739);
+            this.splitContainer1.Size = new System.Drawing.Size(1559, 739);
             this.splitContainer1.SplitterDistance = 363;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
@@ -82,7 +82,7 @@
             this.dgwOrders.RowHeadersWidth = 51;
             this.dgwOrders.RowTemplate.Height = 29;
             this.dgwOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgwOrders.Size = new System.Drawing.Size(1234, 314);
+            this.dgwOrders.Size = new System.Drawing.Size(1535, 314);
             this.dgwOrders.TabIndex = 1;
             this.dgwOrders.SelectionChanged += new System.EventHandler(this.dgwOrders_SelectionChanged);
             // 
@@ -98,6 +98,8 @@
             // 
             // dgwOrderDetails
             // 
+            this.dgwOrderDetails.AllowUserToAddRows = false;
+            this.dgwOrderDetails.AllowUserToDeleteRows = false;
             this.dgwOrderDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -107,11 +109,12 @@
             this.dgwOrderDetails.Location = new System.Drawing.Point(12, 43);
             this.dgwOrderDetails.MultiSelect = false;
             this.dgwOrderDetails.Name = "dgwOrderDetails";
+            this.dgwOrderDetails.ReadOnly = true;
             this.dgwOrderDetails.RowHeadersVisible = false;
             this.dgwOrderDetails.RowHeadersWidth = 51;
             this.dgwOrderDetails.RowTemplate.Height = 29;
             this.dgwOrderDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgwOrderDetails.Size = new System.Drawing.Size(1234, 311);
+            this.dgwOrderDetails.Size = new System.Drawing.Size(1535, 309);
             this.dgwOrderDetails.TabIndex = 1;
             // 
             // label1
@@ -128,7 +131,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 27F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1258, 739);
+            this.ClientSize = new System.Drawing.Size(1559, 739);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
