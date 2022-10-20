@@ -11,8 +11,10 @@ using System.Windows.Forms;
 
 namespace CafeBoston.UI
 {
+    public delegate void TableMoveHandler(int oldTableNo, int newTableNo);
     public partial class OrderForm : Form
     {
+        public event TableMoveHandler TableMoving;
         private readonly CafeData _db;
         private readonly Order _order;
         private readonly BindingList<OrderDetail> _orderDetails;
@@ -38,6 +40,12 @@ namespace CafeBoston.UI
             Text = $"Order (Table {_order.TableNo}) - {_order.StartTime?.ToLongTimeString()}";
             lblTableNo.Text = _order.TableNo.ToString("00");
             lblTotalPrice.Text = _order.TotalPriceTRY;
+            LoadEmptyTableNos();
+        }
+
+        private void LoadEmptyTableNos()
+        {
+            cboTableNo.DataSource = Enumerable.Range(1, _db.TableCount).Where(x => !_db.ActiveOrders.Any(o => o.TableNo == x)).ToList();
         }
 
         private void LoadProducts()
@@ -57,7 +65,7 @@ namespace CafeBoston.UI
             }
             else
             {
-                orderDetail.Quantity+=(int)nudQuantitiy.Value;
+                orderDetail.Quantity += (int)nudQuantitiy.Value;
                 _orderDetails.ResetBindings();
             }
         }
@@ -74,22 +82,32 @@ namespace CafeBoston.UI
 
         private void CompleteOrder(string message, decimal paidAmount, OrderState newState)
         {
-            DialogResult dr = MessageBox.Show(message,"Confirmation",MessageBoxButtons.YesNo,MessageBoxIcon.Warning,MessageBoxDefaultButton.Button2);
+            DialogResult dr = MessageBox.Show(message, "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
 
-            if (dr==DialogResult.Yes)
+            if (dr == DialogResult.Yes)
             {
                 _order.PaidAmount = paidAmount;
-                _order.State=newState;
-                _order.EndTime = DateTime.Now;  
+                _order.State = newState;
+                _order.EndTime = DateTime.Now;
                 _db.ActiveOrders.Remove(_order);
                 _db.PastOrders.Add(_order);
-                DialogResult=DialogResult.OK; // Closes the form with the "OK" result
+                DialogResult = DialogResult.OK; // Closes the form with the "OK" result
             }
         }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            CompleteOrder("Are you sure that you want to cancel the order",0,OrderState.Canceled);
+            CompleteOrder("Are you sure that you want to cancel the order", 0, OrderState.Canceled);
+        }
+
+        private void btnMove_Click(object sender, EventArgs e)
+        {
+            if (cboTableNo.SelectedIndex == -1) return;
+            int target = (int)cboTableNo.SelectedItem;
+            int oldTableNo=_order.TableNo;
+            _order.TableNo = target;
+            if (TableMoving != null)
+                TableMoving(oldTableNo, target);
+            UpdateTableInfo();           
         }
     }
 }
